@@ -49,3 +49,12 @@ export const filterCategoriesThunk = (id) => {
             .finally(() => dispatch(setIsLoading(false)))
     } 
 } 
+
+export const filterHeadlineThunk = (headline) => {
+    return dispatch => {
+        dispatch(setIsLoading(true));
+            return axios.get(`https://ecommerce-api-react.herokuapp.com/api/v1/products/?headline__icontains=${headline}}`)
+                .then(res => dispatch(setItems(res.data)))
+                .finally(() => dispatch(setIsLoading));
+    }
+}
