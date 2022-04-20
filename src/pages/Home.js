@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getItemsThunk, getCategoriesThunk } from '../redux/actions';
+import { getItemsThunk, getCategoriesThunk, filterCategoriesThunk } from '../redux/actions';
 
 
 const Home = () => {
@@ -20,7 +20,8 @@ const Home = () => {
         <h1>Home</h1>
         {
             categories.map(categoria => (
-                <button key={categoria.category.id}>
+                <button key={categoria.category.id} 
+                        onClick={() => dispatch(filterCategoriesThunk(categoria.category.id))}>
                     {categoria.category.name}
                 </button>
             ))
@@ -29,7 +30,7 @@ const Home = () => {
             {
                 items.map(item => (
                     <li key={item.id}>
-                        {/* {item.title}    */}
+                         {item.title}    
                         {item.category.name}
                     </li>
                 ))
